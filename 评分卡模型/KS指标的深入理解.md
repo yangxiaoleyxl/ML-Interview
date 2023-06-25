@@ -11,9 +11,15 @@ KS统计量是基于经验累积分布函数（Empirical Cumulative Distribution
 建立的，一般定义为：
 
 $$ 
-ks = max{||}
+ks = max{|cum_goodrate - cum_badrate|}
 $$ 
 
+KS计算步骤如下：
+- 对变量进行分箱（binning），可以选择等频、等距，或者自定义距离。
+- 计算每个分箱区间的好账户数(goods)和坏账户数(bads)。
+- 计算每个分箱区间的累计好账户数占总好账户数比率(cum_good_rate)和累计坏账户数占总坏账户数比率(cum_bad_rate)。
+- 计算每个分箱区间累计坏账户占比与累计好账户占比差的绝对值，得到KS曲线。也就是： 
+- 在这些绝对值中取最大值，得到此变量最终的KS值 
 
 
 ### 2.特征预提取与衍生 
