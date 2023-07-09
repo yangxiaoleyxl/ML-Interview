@@ -49,4 +49,9 @@
     - ALTER DATABASE   SET DBPROPERTIES  
 - 建表 
     - CREATE [TEMPORARY] [EXTERNAL] TABLE [IF NOT EXISTS] [PARTITION BY] [CLUSTER BY ... INTO <> BUCKETS] [LOCATION]  
+    - CREATE TABLE 创建内表 
+    - CREATE EXTERNAL TABLE 创建外表 
+    - <font color="red"> 创建外表时，一定要指定数据存储位置 </font> 
+    - <font color="red"> 删除外表时，只删除元数据，表中数据保留 </font> 
+    - <font color="red"> 删除内表时，同时删除数据和元数据 </font> 
 
