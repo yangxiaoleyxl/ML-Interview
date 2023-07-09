@@ -53,5 +53,24 @@
     - CREATE EXTERNAL TABLE 创建外表 
     - <font color="red"> 创建外表时，一定要指定数据存储位置 </font> 
     - <font color="red"> 删除外表时，只删除元数据，表中数据保留 </font> 
-    - <font color="red"> 删除内表时，同时删除数据和元数据 </font> 
+    - <font color="red"> 删除内表时，同时删除数据和元数据 </font>  
+    - 临时表 
+
+        - 临时表仅当前 Sesion 可见，Session 结束后立即删除，且不支持 <font color="red"> 分区 </font> 
+```sql 
+CREATE TEMPORARY TABEL <>
+```
+        - CREATE TABLE <> LIKE <> 通过已存在的表或者视图来创建内表，只复制 Schema, 不复制数据
+```sql 
+CREATE TABLE <> LIKE <>
+```
+        - 使用查询结果创建内表，即复制 Schema, 又复制数据   
+```sql 
+CREATE TABLE <> AS SELECT <> 
+```  
+    - 删除表
+        - 对于内表，删除数据和元数据；对于外表，只删除元数据 
+    - 清空表
+        - 删除数据，但不删元数据，该操作只用于内表
+
 
