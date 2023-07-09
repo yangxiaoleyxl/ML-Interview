@@ -28,4 +28,5 @@
 - Boosting Tree 采用前向分步算法
     - 初始化提升树, $f_0(x)=0$ 
     - 第 m 步的模型: $f_m{x} = f_{m-1}(x) + h_m(x, \theta)$ 
-    - 经验风险极小化确定第m个决策树参数, $\Theta_m = argmin_{\Theta_m} \sum_{i=1}^{N} L(y_i, f_m(x)) $, 此处为引入正则化, XGBoost中引入
+    - 经验风险极小化确定第m个决策树参数, $\Theta_m = argmin_{\Theta_m} \sum_{i=1}^{N} L(y_i, f_m(x)) $, 此处为引入正则化, XGBoost中引入 
+- 回归问题通常使用**平方误差损失函数**, 分类问题通常使用**指数损失函数**
