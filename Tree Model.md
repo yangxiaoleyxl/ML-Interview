@@ -30,3 +30,14 @@
     - 第 m 步的模型: $f_m{x} = f_{m-1}(x) + h_m(x, \theta)$ 
     - 经验风险极小化确定第m个决策树参数, $\Theta_m = argmin_{\Theta_m} \sum_{i=1}^{N} L(y_i, f_m(x)) $, 此处为引入正则化, XGBoost中引入 
 - 回归问题通常使用**平方误差损失函数**, 分类问题通常使用**指数损失函数**
+
+### GBT 
+- 当损失函数为平方或指数损失函数时，每一步优化都很简单，但为一般函数时，每一步优化不易，因此提出梯度提升算法
+- GBT利用**损失函数的负梯度在当前模型的值作为残差的近似值，从而拟合一个回归树** 
+$$ 
+L(y, f_m(x)) = L(y, f_{m-1}(x) + h_m(x;\Theta) ) = L(y, f_{m-1}{x}) + \frac{ \partial L(y, f_{m-1}(x)) }{ \partial f_{m-1}(x) } h_{m}(x;\Theta) 
+$$
+故有 
+$$ 
+\delta L = \frac{ \partial L(y, f_{m-1}(x)) }{ \partial f_{m-1}(x) } h_{m}(x;\Theta) 
+$$
