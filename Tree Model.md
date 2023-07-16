@@ -42,7 +42,6 @@ $$
 \delta L = \frac{ \partial L(y, f_{m-1}(x)) }{ \partial f_{m-1}(x) } h_{m}(x;\Theta) 
 $$ 
 
-
 ### RF vs GBT  
 从模型的框架上，
     - GBDT 是 boosting 模型
@@ -60,7 +59,8 @@ $\Omega(h_m(x))$ 是正则化项
 以损失函数为目标函数，对其进行二阶泰勒展开，GBDT只用了一阶泰勒展开，这是**GBDT与XGBOOST**的重要区别 
 - 根据决策树的推理过程，可将决策树划分为
     - 结构部分
-    - 叶节点权重部分 
+    - 叶节点权重部分  
+    
 
 
 
