@@ -14,7 +14,4 @@
 ### 2.HDFS Delete
 - hdfs dfs -rm -r XX：删除文件
 - hdfs dfs -rm -r -skipTrash XX: 跳过回收站 
-- hdfs dfs -expunge: 清空回收站
-
-
-
+- hdfs dfs -expunge: 清空回收站 
