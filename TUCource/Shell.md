@@ -30,5 +30,12 @@
 - command >file, 输出重定向到 file (注意>和file之间不能有空格)
 - command >>file, 输出重定向到file (注意>和file之间不能有空格) 
 - command >file 2>&1，以覆盖方式，将正确输出和错误信息都输出到同一文件file中
-- command >>file 2>&1, 以追加方式，将正确输出和错误信息都输出到同一文件file中
+- command >>file 2>&1, 以追加方式，将正确输出和错误信息都输出到同一文件file中 
+
+### While 
+- while [condition] do {} done  
+
+### $? 
+- 获取上一个命令的退出状态
+- 获取函数的返回值
 
