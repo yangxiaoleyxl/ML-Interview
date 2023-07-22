@@ -1,12 +1,18 @@
 ## Shell script Summary
-- [1.Stream管理](#1stream管理)
-- [2.StreamJob管理](#2streamjob管理)
-- [2.Application管理](#2application管理)
+- [Variables](#variables)
+- [Math Relation](#math-relation)
+- [If Else](#if-else)
+- [For](#for)
+- [Case](#case)
+- [redirect](#redirect)
+- [While](#while)
+- [$?](#\#?)
+- [read](#read)
+
 
 ### Variables
 - 系统定义变量: set命令查看
 - 用户定义变量：echo$<变量名>  
-- 
 
 ### Math Relation
 - -eq 相等
