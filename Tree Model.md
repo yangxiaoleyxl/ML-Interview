@@ -67,6 +67,23 @@ XGBOOST的缺点：
 
 
 ### LightGBM 
+LGB 是针对 XGBOOST 的上述缺陷做出了7点优化：
+- 基于 Histogram 的决策树算法
+- 单边梯度采样 Gradient-based One-Side Sampling（GOSS）: 使用GOSS可以减少大量只具有小梯度的数据实例, 这样在计算信息增益的时候只利用剩下的具有高梯度的数据就可以了。相比XGBoost遍历所有特征值节省了不少时间和空间上的开销
+- 互斥特征捆绑 Exclusive Feature Bundling (EFB)：使用EFB可以将许多互斥的特征绑定为一个特征，这样达到了降维的目的 
+- 带深度限制的 Leaf-wise 的叶子生长策略：大多数 GBDT 工具支持 level-wise, 但按层生长的策略不加区分地对待同一层的叶子。实际上很多叶子的分裂增益较低，没必要进行搜索和分裂
+- 直接支持类别特征 
+- 支持高效并行 
+- Cache命中率优化   
+
+lightGBM参数优化一般技巧：
+- 日常的调参顺序
+    - max_depth、num_leaves
+    - min_data_in_leaf、min_child_weight
+    - bagging_fraction、 feature_fraction、bagging_freq
+    - reg_lambda、reg_alpha
+    - min_split_gain 
+- 
 
 
 
