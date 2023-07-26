@@ -26,7 +26,7 @@
 
 ### 3.创建图 
 常见的建图方法：
-- 使用 TEoC 建图 `create graph (if not exists) <name> with schema [node schema] [rel_schema] garphproperties:[...]`
-- 使用 JSON 建图 
-- 根据现有图的 schema 建图 
-- 查看已创建的图 
+- 使用 TEoC 建图 `create graph (if not exists) <name> with schema [node schema] [rel_schema] graphproperties:[...]`
+- 使用 JSON 建图 `create graph <name> with file schema <path> `
+- 根据现有图的 schema 建图 `create graph <copy_graph> with schema from graph my_graph`
+- 查看已创建的图 `show graph(s)` 
