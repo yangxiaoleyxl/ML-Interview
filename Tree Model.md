@@ -83,7 +83,17 @@ lightGBM参数优化一般技巧：
     - bagging_fraction、 feature_fraction、bagging_freq
     - reg_lambda、reg_alpha
     - min_split_gain 
-- 
+
+面临过拟合时，可能需要对以下参数进行调优：
+- 使用更小的 `max_bin` 
+- 使用更小的 `num_leaves` 
+- 使用 `min_data_in_leaf` 和 `min_sum_hessian_in_leaf` 
+- 通过设置 `bagging_fraction` 和 `bagging_freq` 使用 `bagging_freq`
+通过设置 `feature_fraction` 使用特征子采样 
+- 使用更大的训练数据 
+- 尝试 `lambdal1`、`lambdal2` 和 `min_gain_to_split` 进行正则化 
+- 尝试 `max_depths` 以避免树的深度增长 
+
 
 
 
