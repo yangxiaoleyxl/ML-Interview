@@ -29,4 +29,10 @@
 - 使用 TEoC 建图 `create graph (if not exists) <name> with schema [node schema] [rel_schema] graphproperties:[...]`
 - 使用 JSON 建图 `create graph <name> with file schema <path> `
 - 根据现有图的 schema 建图 `create graph <copy_graph> with schema from graph my_graph`
-- 查看已创建的图 `show graph(s)` 
+- 查看已创建的图 `show graph(s)`  
+
+
+### 4.批量数据导入
+- 支持的格式：Text, ORC, CSV 以及 Parquet. 批量数据导入 要在`analysis` 模式运行，可通过 `config crux.execution.mode analysis` 切换
+- `bulk upsert/create/delete` 导入数据, 例句 `select * from source_db.e bulk upsert [:YY {__uid:uid, prop1:str, prop2:name}] ` 
+- `load node into graph graph_name from source_db with file schema "hdfs://home/load.json" ` 根据位于hdfs://home/的json文件，将 source_db 库下的 v 表数据批量导入点
