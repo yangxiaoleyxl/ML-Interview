@@ -35,4 +35,29 @@
 ### 4.批量数据导入
 - 支持的格式：Text, ORC, CSV 以及 Parquet. 批量数据导入 要在`analysis` 模式运行，可通过 `config crux.execution.mode analysis` 切换
 - `bulk upsert/create/delete` 导入数据, 例句 `select * from source_db.e bulk upsert [:YY {__uid:uid, prop1:str, prop2:name}] ` 
-- `load node into graph graph_name from source_db with file schema "hdfs://home/load.json" ` 根据位于hdfs://home/的json文件，将 source_db 库下的 v 表数据批量导入点
+- `load node into graph graph_name from source_db with file schema "hdfs://home/load.json" ` 根据位于hdfs://home/的json文件，将 source_db 库下的 v 表数据批量导入点 
+
+### 5.图算法
+- 通过创建视图来加速图算法的执行, 创建视图语句 `create query temporary view GRAPH_VIEM_NAME as (v) [e] with GRAPH_AIGO(@GRAPH_VIEW_NAME, VIEW_STORE_PATH, CONFIG_MAP, PROPS) ; ` 
+- 算法
+    - 基本度量
+        - 直径
+        - 半径
+        - 度
+        - K-core 
+        - 三角计数 
+        - 局部聚集系数
+        - 平均聚集系数
+    - 中心性算法
+        - PageRank
+        - Presonalized PageRank 
+        - ArticleRank 
+        - Weighted PageRank 
+        - 特征向量中心性 
+        - 介度中心性
+        - 接近中心性
+        - 调和中心性
+    - 路径搜寻
+    - 社区发现
+    - 相似度
+    - 链路预测
