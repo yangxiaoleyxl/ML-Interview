@@ -1,7 +1,8 @@
 ### Data Mining  
 以实际数据挖掘竞赛为例，总结一般的数据挖掘流程与路径
 #### 1. EDA 
-数据探索性分析是分析原始数据集的第一步，常用的代码段包括
+数据探索性分析是分析原始数据集的第一步，常用的代码段包括：
+- 第一阶段
 ```python  
 import pandas as pd 
 # 查看各维度的基本信心
@@ -22,7 +23,6 @@ missing = missing[missing > 0]
 missing.sort_values(inplace=True)
 missing.plot.bar()
 
-
 # 查看缺失率大于 X % 的维度
 def nan_ratio_gt(x):
     have_null_fea_dict = (df.isnull().sum()/len(df)).to_dict()
@@ -32,6 +32,32 @@ def nan_ratio_gt(x):
             fea_null_moreThanHalf[key] = value  
     return fea_null_moreThanHalf 
     
+# 查看只有单数值的属性, nunique() 函数
+one_value_fea = [col for col in df.columns if df[col].nunique() <= 1]  
 
+``` 
 
-```
+- 第二阶段
+    - 特征一般都由 **类别型特征** 和 **数值型特征**组成，其中数值型特征又分为 **连续数值型** 和 **离散数值型** 特征  
+    - 类别型特征同时分为 有序 和 无序，例如：等级"A","B","C"可能有序，也可能无序，但学位"学士"，"硕士"，"博士"本身就包含顺序关系，如果认为地位相同，可能会丢失信息 
+    - 数值型特征本是可以直接入模的，但往往风控人员要对其做分箱，转化为WOE编码进而做标准评分卡等操作
+```python  
+# 提取 数值型 和 类别型 特征 
+numerical_fea = list(df.select_dtypes(exclude=['object']).columns)
+category_fea = list(filter(lambda x: x not in numerical_fea,list(df.columns))) 
+
+# 划分 连续数值型 和 离散数值型 特征 
+def get_numerical_serial_fea(data,feas):
+    numerical_serial_fea = []
+    numerical_noserial_fea = []
+    for fea in feas:
+        temp = data[fea].nunique()
+        if temp <= 10:
+            numerical_noserial_fea.append(fea)
+            continue
+        numerical_serial_fea.append(fea)
+    return numerical_serial_fea,numerical_noserial_fea
+numerical_serial_fea,numerical_noserial_fea = get_numerical_serial_fea(df, numerical_fea)
+
+```  
+
