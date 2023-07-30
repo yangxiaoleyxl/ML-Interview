@@ -57,7 +57,18 @@ def get_numerical_serial_fea(data,feas):
             continue
         numerical_serial_fea.append(fea)
     return numerical_serial_fea,numerical_noserial_fea
-numerical_serial_fea,numerical_noserial_fea = get_numerical_serial_fea(df, numerical_fea)
+numerical_serial_fea,numerical_noserial_fea = get_numerical_serial_fea(df, numerical_fea) 
+
+# 对于 离散数值型  和  类别型， 都可用 value_counts() 去探查不同数值上的分布情况 
+df['subGrade'].value_counts() 
+
+
+# 对于连续数值型， 每个数字特征得分布可视化
+f = pd.melt(df, value_vars=numerical_serial_fea)
+g = sns.FacetGrid(f, col="variable",  col_wrap=2, sharex=False, sharey=False) 
+g = g.map(sns.distplot, "value")    
+
+
 
 ```  
 
