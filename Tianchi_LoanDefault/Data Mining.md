@@ -16,7 +16,22 @@ df.head(3).append(df.tail(3))
 # 查看缺失值 df.isnull().any().sum()
 print(f'There are {data_train.isnull().any().sum()} columns in train dataset with missing values.') 
 
-# 
+# nan可视化, 查看 缺失特征 和 缺失率
+missing = df.isnull().sum()/len(df)
+missing = missing[missing > 0]
+missing.sort_values(inplace=True)
+missing.plot.bar()
+
+
+# 查看缺失率大于 X % 的维度
+def nan_ratio_gt(x):
+    have_null_fea_dict = (df.isnull().sum()/len(df)).to_dict()
+    fea_null_moreThanHalf = {}
+    for key,value in have_null_fea_dict.items():
+        if value > x:
+            fea_null_moreThanHalf[key] = value  
+    return fea_null_moreThanHalf 
+    
 
 
 ```
