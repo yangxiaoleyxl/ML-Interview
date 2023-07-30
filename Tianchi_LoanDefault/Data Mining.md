@@ -68,6 +68,10 @@ f = pd.melt(df, value_vars=numerical_serial_fea)
 g = sns.FacetGrid(f, col="variable",  col_wrap=2, sharex=False, sharey=False) 
 g = g.map(sns.distplot, "value")    
 
+#转化成时间格式  issueDateDT特征表示数据日期离数据集中日期最早的日期（2007-06-01）的天数
+data_train['issueDate'] = pd.to_datetime(data_train['issueDate'],format='%Y-%m-%d')
+startdate = datetime.datetime.strptime('2007-06-01', '%Y-%m-%d')
+data_train['issueDateDT'] = data_train['issueDate'].apply(lambda x: x-startdate).dt.days
 
 
 ```  
