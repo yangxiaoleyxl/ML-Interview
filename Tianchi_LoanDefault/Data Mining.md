@@ -33,7 +33,8 @@ def nan_ratio_gt(x):
     return fea_null_moreThanHalf 
     
 # 查看只有单数值的属性, nunique() 函数
-one_value_fea = [col for col in df.columns if df[col].nunique() <= 1]  
+one_value_fea = [col for col in df.columns if df[col].nunique() <= 1]   
+
 
 ``` 
 
@@ -68,11 +69,24 @@ f = pd.melt(df, value_vars=numerical_serial_fea)
 g = sns.FacetGrid(f, col="variable",  col_wrap=2, sharex=False, sharey=False) 
 g = g.map(sns.distplot, "value")    
 
-#转化成时间格式  issueDateDT特征表示数据日期离数据集中日期最早的日期（2007-06-01）的天数
-data_train['issueDate'] = pd.to_datetime(data_train['issueDate'],format='%Y-%m-%d')
-startdate = datetime.datetime.strptime('2007-06-01', '%Y-%m-%d')
-data_train['issueDateDT'] = data_train['issueDate'].apply(lambda x: x-startdate).dt.days
+# 对 数值型 和 类别型 进行数值填充 
 
+# 按照中位数填充数值型特征
+data_train[numerical_fea] = data_train[numerical_fea].fillna(data_train[numerical_fea].median())
+data_test_a[numerical_fea] = data_test_a[numerical_fea].fillna(data_train[numerical_fea].median())
+#按照众数填充类别型特征
+data_train[category_fea] = data_train[category_fea].fillna(data_train[category_fea].mode())
+data_test_a[category_fea] = data_test_a[category_fea].fillna(data_train[category_fea].mode()) 
+
+
+# 转化成时间格式, 通常使用 与最早日期的间隔天数 
+# 或与固定时间节点的间隔天数 作为特征 
+for data in [data_train, data_test_a]:
+    data['issueDate'] = pd.to_datetime(data['issueDate'],format='%Y-%m-%d')
+    startdate = datetime.datetime.strptime('2007-06-01', '%Y-%m-%d')
+    #构造时间特征
+    data['issueDateDT'] = data['issueDate'].apply(lambda x: x-startdate).dt.days  
+    
 
 ```  
 
