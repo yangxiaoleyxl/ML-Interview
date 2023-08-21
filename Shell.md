@@ -13,4 +13,14 @@ for file in `ls -l | awk '$5>300 {print $9}'`
 do
     echo $file
 done
-```  
+```   
+
+### 2.某个文件夹中找到.py结尾的文件取10个，并取所有文件的第一行  
+
+```shell 
+#! bin/shell 
+for file in `find dir -type f -name "*.py" | head -n 10`  
+do 
+    sed -n '1p' $file >> result_file
+done 
+```
