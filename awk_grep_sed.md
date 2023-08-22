@@ -1,24 +1,17 @@
+# Linux 文本三剑客 
+### awk 
 
- # awk
-在awk中，传参的方式主要有如下两种：  
 
-<!-- ## 1.用-v传参
+### sed 
 
-```
-[xxx@xxx expensive_user]$ A=3
-[xxx@xxx expensive_user]$ B=4
-[xxx@xxx expensive_user]$ echo | awk -v A=$A -v B=$B '{printf("%.2f\n",A/B)}'
-0.75
-```  
 
-## 2.在action后传参
-这种方式就是在awk的动作语句后面指定参数的值  
-
-```
-[xxx@xxx expensive_user]$ A=3
-[xxx@xxx expensive_user]$ B=4
-[xxx@xxx expensive_user]$ echo |awk '{printf("%.2f\n",A/B)}' A=$A B=$B
-0.75
-```  
-
-还有通过环境变量传参的方式。但是那种方式我使用的概率非常非常小，所以就不再给大家介绍。 -->
+### grep 
+- `grep    [options]    pattern     [file]` 
+-  '命令'    '参数'     '匹配模式'    '文件' 
+#### 末尾参数
+- i：忽略大小写进行匹配。
+- v：反向查找，只打印不匹配的行。
+- n：显示匹配行的行号。
+- E 或 --extended-regexp : 将样式为延伸的正则表达式来使用。
+- q 或 --quiet或--silent : 不显示任何信息。
+- o 或 --only-matching : 只显示匹配PATTERN 部分
