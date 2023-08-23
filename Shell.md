@@ -69,4 +69,17 @@ awk '/^\s*$/{print NR}' xxx
 
 ```shell  
 sed -n '/^\s*$/=' xxx 
-```
+``` 
+
+### 统计某个文本去重后的行数
+
+可以使用如下命令： 
+
+```shell 
+sort xxxfile | uniq | wc -l
+```  
+
+也可以使用如下命令  
+ 
+```shell
+sort -u xxxfile | wc -l
