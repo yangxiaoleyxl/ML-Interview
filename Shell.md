@@ -57,3 +57,16 @@ select_from_mysql
 2.mysql -s选项表示查询输出的结果不带字段名称，如果不加-s选项会输出字段名称。  
 3.将resultfile换成你最终结果文件存储的地址。 
 
+### 处理空行 
+- 查看空行行号
+```shell  
+grep -n '^\s*$' xxx  
+``` 
+
+```shell  
+awk '/^\s*$/{print NR}' xxx  
+``` 
+
+```shell  
+sed -n '/^\s*$/=' xxx 
+```
