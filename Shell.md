@@ -23,63 +23,23 @@ for file in `find dir -type f -name "*.py" | head -n 10`
 do 
     sed -n '1p' $file >> result_file
 done 
-```  
-
-### 3.打印fileB中有fileA中没有的行
-方法1:用awk的方法  
-
-```
-awk 'NR==FNR{a[$0]++} NR>FNR{if(!($0 in a)) print $0}' file1 file2
 ``` 
 
-### 4.Shell 封装 MySQL 查询 
-```shell
+### 3.字符串判空 
+```shell 
 #!/bin/bash
 
-host=xxx
-user=xxx
-password=xxx
-port=xxx
-dbname=xxx
+test_str=""
 
-sql_conn_str="-h${host} -P${port} -u${user} -p${password} $dbname"
+if [ "$test_str" = "" ];then
+    echo "NULL!"
+fi
 
-function select_from_mysql()
-{
-	sql="xxxxxx"
-	echo "$sql" | mysql -s $sql_conn_str >resultfile
-}
+if [ x"$test_str" = x ];then
+    echo "NULL!"
+fi
 
-select_from_mysql
-```   
-上面的代码就可以满足我们的需求。注意的几个小点：  
-1.实际使用时候，将数据库各配置项，以及具体的sql查询语句替换成实际配置项即可。  
-2.mysql -s选项表示查询输出的结果不带字段名称，如果不加-s选项会输出字段名称。  
-3.将resultfile换成你最终结果文件存储的地址。 
-
-### 处理空行 
-- 查看空行行号
-```shell  
-grep -n '^\s*$' xxx  
-``` 
-
-```shell  
-awk '/^\s*$/{print NR}' xxx  
-``` 
-
-```shell  
-sed -n '/^\s*$/=' xxx 
-``` 
-
-### 统计某个文本去重后的行数
-
-可以使用如下命令： 
-
-```shell 
-sort xxxfile | uniq | wc -l
-```  
-
-也可以使用如下命令  
- 
-```shell
-sort -u xxxfile | wc -l
+if [ -z "$test_str" ]; then
+    echo "NULL!"
+fi 
+```
