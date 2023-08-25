@@ -42,4 +42,12 @@ fi
 if [ -z "$test_str" ]; then
     echo "NULL!"
 fi 
+``` 
+### 4.求字符串长度：
 ```
+$ x="a:b:c:"
+方法一：
+$ echo ${#x}
+6
+```  
+
