@@ -4,7 +4,10 @@
 - `action动作场景` 
     - `$0` 代表整行
     - `$NF` 代表分割后的最后一列
-    - `$(NF-1)`代表分割后的倒数第二列 
+    - `$(NF-1)`代表分割后的倒数第二列  
+
+- `awk '{print $1}' filename` 使用 awk 打印文件第一列 
+- `awk 'END {print NR}' filename` 统计文件行数
 
 ### sed 
 
