@@ -1,5 +1,5 @@
 # Linux 文本三剑客 
-### awk 
+## awk 
 - `awk [option] 'pattern[action]' file` 即通过**单引号**中的条件动作进行文本格式化 
 - `action动作场景` 
     - `$0` 代表整行
@@ -7,12 +7,34 @@
     - `$(NF-1)`代表分割后的倒数第二列  
 
 - `awk '{print $1}' filename` 使用 awk 打印文件第一列 
-- `awk 'END {print NR}' filename` 统计文件行数
+- `awk 'END {print NR}' filename` 统计文件行数 
+- `awk {sum += $1} END {print sum} filename` 如何计算某一列的总和  
 
-### sed 
+## sed 
+#### sed 语法 
+`sed [options] 'OPERATION' filename`   
+- options
+    - -n: Suppresses the default behavior of printing the pattern space to the console after processing.
+    - i: Changes the original file instead of outputting the changes to stdout. 
+- OPERATION
+    - s: Replaces the first occurrence of a regex pattern with another regex pattern.
+    - y: Translates a set of characters into another set of characters.
+    - d: Deletes the pattern space without printing it.
+    - p: Prints the pattern space to stdout.
+    - g: Replaces all occurrences of the regex pattern with another regex pattern.
+    - a: Appends text to the output stream.
+    - i: Inserts text to the output stream.
+    - r: Reads text from the file and appends it to the output stream. 
 
+#### 内容替换 
+`sed '/s/old/new/g' filename`  
+#### 删除行列 
+`sed 'Nd;Md' file.txt`  
 
-### grep 
+#### 打印指定行 
+`sed 'a,bp' file.txt`
+
+## grep 
 - `grep    [options]    pattern     [file]` 
 -  '命令'    '参数'     '匹配模式'    '文件' 
 #### 末尾参数
