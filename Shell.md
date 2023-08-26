@@ -50,5 +50,26 @@ $ x="a:b:c:"
 方法一：
 $ echo ${#x}
 6
-```   
+```    
+
+### 5.处理数组   
+
+```shell
+# 初始化数组 
+arr = (0,1,2) 
+
+arr[0]=0 
+arr[1]=1 
+arr[2]=2  
+
+# Iteration  
+for i in ${arr[@]} 
+do 
+    echo i 
+done   
+
+# Get Length of arr 
+echo ${#arr[@]} 
+
+```    
 
