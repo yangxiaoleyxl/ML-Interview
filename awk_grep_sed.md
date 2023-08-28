@@ -49,4 +49,13 @@
 - `grep "xx" /tmp/passwd.txt -n` 找到与 xx 有关的行并显示行号 
 - `grep  "xx" /tmp/passwd.txt -v` 找到与 xx 无关的行 
 - `grep 'xx' /tmp/passwd.txt -c` 统计含有 xx 的行数 
-- `grep '^m' /tmp/passwd.txt` 找到以 m 开头的行  
+- `grep '^m' /tmp/passwd.txt` 找到以 m 开头的行   
+
+
+### 综合例子 
+- 写一个 bash脚本以实现一个需求，去掉输入中含有this的语句，把不含this的语句输出
+```sell
+$awk '!/this/ {print $0}' filename  
+$grep -v 'this' 
+$sed '/this/d' filename  
+```
