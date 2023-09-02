@@ -74,5 +74,20 @@ cat nowcoder.txt | xargs -n1 | sort | uniq -c | sort -n | awk '{print $2, $1}'
 # uniq 统计重复行 
 # sort 对第一列统计结果排序 
 # awk 交换列位置输出
-``` 
+```  
+- 去掉空行
+```shell
+# grep 
+grep -v '^$' 
+
+# cat + awk 
+cat nowcoder.txt | awk NF
+```  
+
+- 第二列是否有重复 
+```shell  
+awk '{a[$2]+=1}END{for(x in a){if(a[x]>1) print a[x],x}}' nowcoder.txt 
+```  
+
+
 
