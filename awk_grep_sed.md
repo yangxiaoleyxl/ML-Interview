@@ -8,7 +8,7 @@
 
 - `awk '{print $1}' filename` 使用 awk 打印文件第一列 
 - `awk 'END {print NR}' filename` 统计文件行数 
-- `awk {sum += $1} END {print sum} filename` 如何计算某一列的总和  
+- `awk {sum += $1} END {print sum} filename` 如何计算某一列的总和   
 
 ## sed 
 #### sed 语法 
@@ -54,8 +54,25 @@
 
 ### 综合例子 
 - 写一个 bash脚本以实现一个需求，去掉输入中含有this的语句，把不含this的语句输出
-```sell
+```shell 
 $awk '!/this/ {print $0}' filename  
 $grep -v 'this' 
 $sed '/this/d' filename  
 ```
+
+- 打印第5行 
+```shell
+$sed -n 5p 
+``` 
+
+- 统计每个单词出现的次数
+```shell
+cat nowcoder.txt | xargs -n1 | sort | uniq -c | sort -n | awk '{print $2, $1}' 
+# cat 访问文件 
+# xargs 转为单行输出 
+# sort 结果按字符大小排序 
+# uniq 统计重复行 
+# sort 对第一列统计结果排序 
+# awk 交换列位置输出
+``` 
+
